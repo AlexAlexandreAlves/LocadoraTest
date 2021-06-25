@@ -20,17 +20,17 @@ namespace Model
 
         public Cliente(string Nome, DateTime DtNascimento, string Cpf, int DiasParaRetorno)
         {
-
-
-            Context db = new Context();
             this.Nome = Nome;
             this.DtNascimento = DtNascimento;
             this.Cpf = Cpf;
             this.DiasParaRetorno = DiasParaRetorno;
 
-
-            db.Clientes.Add(this);
-            db.SaveChanges();
+            if (VerificaCpf()){
+                Context db = new Context();
+                db.Clientes.Add(this);
+                db.SaveChanges();
+            }
+            
         }
 
         public override string ToString()
@@ -123,7 +123,11 @@ namespace Model
         }
 
         public bool VerificaCpf() {
-            return !String.IsNullOrEmpty(this.Cpf);
+            if (String.IsNullOrEmpty(this.Cpf)){
+                return false;
+            } else {
+                return true;    
+            }
         }
 
         public bool VerificaNome() {

@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Model
 {
@@ -7,7 +8,7 @@ namespace Model
         [TestClass]
         public class UnitTest1
         {
-            [DataTestMethod]
+            /*/[DataTestMethod]
             [DataRow("")]
             [DataRow(null)]
             //[DataRow(" ")]
@@ -21,19 +22,14 @@ namespace Model
                 );
                 bool resultado = c.VerificaNome();
                 Assert.IsFalse(resultado);
+               
 
-            }
-        }
+            }*/
 
-        [TestClass]
-        public class UnitTest2
-        {
             [DataTestMethod]
-            [DataRow("056.458.123.98")]
-            //[DataRow(null)]
-            [DataRow(" ")]
-
-            public void Model_Cliente_Cpf(string value)
+            [DataRow("")]
+            [DataRow(null)]
+            public void Model_Cliente_Cpf_TestarVazio(string value)
             {
                 Cliente c = new Cliente(
                     "Teste",
@@ -42,28 +38,28 @@ namespace Model
                     15
                 );
                 bool resultado = c.VerificaCpf();
-                Assert.IsFalse(resultado);
+                Assert.IsTrue(resultado);
 
             }
+
+
+            /* [TestClass]
+             public class CriarCliente
+             {
+                 [DataTestMethod]
+                 public void Model_Criar_Cliente()
+                 {
+                     Cliente c = new Cliente(
+                         "Teste",
+                         new System.DateTime(),
+                         "000.000.000-00",
+                         15
+                     );
+                     Cliente createdCliente = Cliente.GetCliente(c.Id);
+                     Assert.IsTrue(createdCliente.Nome == c.Nome);
+                 }
+             }*/
         }
-
-       /* [TestClass]
-        public class CriarCliente
-        {
-            [DataTestMethod]
-            public void Model_Criar_Cliente()
-            {
-                Cliente c = new Cliente(
-                    "Teste",
-                    new System.DateTime(),
-                    "000.000.000-00",
-                    15
-                );
-                Cliente createdCliente = Cliente.GetCliente(c.Id);
-                Assert.IsTrue(createdCliente.Nome == c.Nome);
-            }
-        }*/
-
 
     }
 
