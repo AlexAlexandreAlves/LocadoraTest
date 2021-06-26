@@ -8,28 +8,29 @@ namespace Model
         [TestClass]
         public class UnitTest1
         {
-            /*/[DataTestMethod]
-            [DataRow("")]
+            [DataTestMethod]
+            [DataRow("000")]
             [DataRow(null)]
             //[DataRow(" ")]
-            public void Model_Cliente_Nome(string value)
+            public void Model_Cliente_Nome_TesteCampo(string value)
             {
                 Cliente c = new Cliente(
-                    value,
+                    "Teste",
                     new System.DateTime(),
-                    "000.000.000-00",
+                    value,
                     15
                 );
                 bool resultado = c.VerificaNome();
-                Assert.IsFalse(resultado);
-               
+                Assert.IsTrue(resultado);
 
-            }*/
+
+            }
 
             [DataTestMethod]
             [DataRow("")]
             [DataRow(null)]
-            public void Model_Cliente_Cpf_TestarVazio(string value)
+
+            public void Model_Cliente_Cpf_TesteVazio(string value)
             {
                 Cliente c = new Cliente(
                     "Teste",
@@ -62,5 +63,5 @@ namespace Model
         }
 
     }
-
 }
+

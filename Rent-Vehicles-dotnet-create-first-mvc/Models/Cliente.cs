@@ -25,12 +25,16 @@ namespace Model
             this.Cpf = Cpf;
             this.DiasParaRetorno = DiasParaRetorno;
 
-            if (VerificaCpf()){
-                Context db = new Context();
-                db.Clientes.Add(this);
-                db.SaveChanges();
+            if (VerificaNome())
+            {
+                if (VerificaCpf())
+                {
+                    Context db = new Context();
+                    db.Clientes.Add(this);
+                    db.SaveChanges();
+                }
             }
-            
+
         }
 
         public override string ToString()
@@ -101,7 +105,7 @@ namespace Model
 
 
         //Atualização de clientes no banco de dados
-            
+
         public static Cliente AtualizarClientes(
           Cliente cliente
       )
@@ -115,23 +119,36 @@ namespace Model
         //Remoção de clientes no banco de dados
 
 
-        public static void RemoverClientes(int Id) {
+        public static void RemoverClientes(int Id)
+        {
             Cliente cliente = GetCliente(Id);
             Context db = new Context();
             db.Clientes.Remove(cliente);
             db.SaveChanges();
         }
 
-        public bool VerificaCpf() {
-            if (String.IsNullOrEmpty(this.Cpf)){
+        public bool VerificaCpf()
+        {
+            if (String.IsNullOrEmpty(this.Cpf))
+            {
                 return false;
-            } else {
-                return true;    
+            }
+            else
+            {
+                return true;
             }
         }
 
-        public bool VerificaNome() {
-            return !String.IsNullOrEmpty(this.Nome);
+        public bool VerificaNome()
+        {
+            if (String.IsNullOrEmpty(this.Nome))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
